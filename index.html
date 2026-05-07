@@ -255,7 +255,34 @@ input[type="number"],input[type="text"],select,textarea{font-size:16px!important
 input:focus,select:focus{scroll-margin-bottom:120px}
 
 /* ── Font size scaling ───────────────────────── */
-/* Font size scaling handled by JS */
+/* ── Font size scaling ── */
+/* Large: ~1.2x scale of common sizes */
+html.fs-lg .panel-content *,
+html.fs-lg .home-wrap * {
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+}
+html.fs-lg .panel-content h2,
+html.fs-lg .home-wrap h2 { font-size: 19px !important; }
+html.fs-lg .panel-content h3,
+html.fs-lg .home-wrap h3 { font-size: 17px !important; }
+
+/* Extra large: ~1.4x scale */
+html.fs-xl .panel-content *,
+html.fs-xl .home-wrap * {
+  font-size: 17px !important;
+  line-height: 1.7 !important;
+}
+html.fs-xl .panel-content h2,
+html.fs-xl .home-wrap h2 { font-size: 22px !important; }
+html.fs-xl .panel-content h3,
+html.fs-xl .home-wrap h3 { font-size: 20px !important; }
+
+/* Keep buttons and badges compact even when scaled */
+html.fs-lg .tc-tag, html.fs-xl .tc-tag { font-size: 11px !important; }
+
+/* Exclude chrome from scaling */
+.topbar *, .tabbar *, .panel-subhdr * { font-size: inherit !important; }
 
 </style>
 </head>
@@ -4564,31 +4591,10 @@ var fsIdx = 0;
 try { fsIdx = parseInt(localStorage.getItem('uhp-fs') || '0'); } catch(e){}
 
 function applyFS(){
-  // Remove old size classes from app
-  var app = document.querySelector('.app');
-  if(app){
-    fsSizes.forEach(function(s){ app.classList.remove(s); });
-    if(fsIdx > 0) app.classList.add(fsSizes[fsIdx]);
-  }
-  // Directly set font-size on all panel-content and home-wrap elements
-  // This beats inline styles because we're setting inline style directly
-  var scales = [1, 1.2, 1.4];
-  var scale = scales[fsIdx];
-  document.querySelectorAll('.panel-content, .home-wrap').forEach(function(container){
-    // Walk all text nodes' parent elements and scale their font sizes
-    container.querySelectorAll('*').forEach(function(el){
-      // Store original font size if not already stored
-      if(!el.dataset.origFs){
-        var computed = window.getComputedStyle(el).fontSize;
-        el.dataset.origFs = computed;
-      }
-      var orig = parseFloat(el.dataset.origFs);
-      if(orig && orig > 0){
-        el.style.fontSize = (orig * scale) + 'px';
-      }
-    });
-  });
-  // Update topbar button label
+  var html = document.documentElement;
+  fsSizes.forEach(function(s){ html.classList.remove(s); });
+  if(fsIdx > 0) html.classList.add(fsSizes[fsIdx]);
+  // Update topbar A button
   var tb = document.getElementById('fs-toggle');
   if(tb){
     tb.textContent = ['A','A+','A++'][fsIdx];
@@ -4599,9 +4605,9 @@ function applyFS(){
   for(var i=0;i<3;i++){
     var b = document.getElementById('fs-btn-'+i);
     if(!b) continue;
-    b.style.background = i===fsIdx ? 'rgba(255,255,255,.3)' : 'rgba(255,255,255,.08)';
-    b.style.borderColor = i===fsIdx ? 'rgba(255,255,255,.6)' : 'rgba(255,255,255,.2)';
-    b.style.outline     = i===fsIdx ? '2px solid rgba(255,255,255,.3)' : 'none';
+    b.style.background   = i===fsIdx ? 'rgba(255,255,255,.3)'  : 'rgba(255,255,255,.08)';
+    b.style.borderColor  = i===fsIdx ? 'rgba(255,255,255,.6)'  : 'rgba(255,255,255,.15)';
+    b.style.outline      = i===fsIdx ? '2px solid rgba(255,255,255,.3)' : 'none';
   }
   try { localStorage.setItem('uhp-fs', fsIdx); } catch(e){}
 }
