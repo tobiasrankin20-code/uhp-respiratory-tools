@@ -254,72 +254,73 @@ input[type="number"],input[type="text"],select,textarea{font-size:16px!important
 /* Prevent content jump when keyboard opens - inputs scroll into view smoothly */
 input:focus,select:focus{scroll-margin-bottom:120px}
 
-/* ── Font size scaling ───────────────────────── */
-/* ── Font size scaling ── */
-/* Target only text-bearing elements — leave layout divs alone */
-/* Large ~1.2x */
-html.fs-lg .panel-content div.cl,
-html.fs-lg .panel-content div.cd,
-html.fs-lg .panel-content div.csub,
-html.fs-lg .panel-content div.ct,
-html.fs-lg .panel-content div.evid,
-html.fs-lg .panel-content div.evid-note,
-html.fs-lg .panel-content div.info,
-html.fs-lg .panel-content div.ref-note,
-html.fs-lg .panel-content div.safety,
+/* ── Font size scaling ──
+   Uses proportional scaling per size bracket to preserve hierarchy
+   !important needed to beat inline styles on tool divs             */
+
+/* ── LARGE (1.2x) ── */
+html.fs-lg .panel-content [style*="font-size:11px"],
+html.fs-lg .panel-content [style*="font-size: 11px"] { font-size: 13px !important; }
+
+html.fs-lg .panel-content [style*="font-size:12px"],
+html.fs-lg .panel-content [style*="font-size: 12px"] { font-size: 14px !important; }
+
+html.fs-lg .panel-content [style*="font-size:13px"],
+html.fs-lg .panel-content [style*="font-size: 13px"] { font-size: 16px !important; }
+
+html.fs-lg .panel-content [style*="font-size:14px"],
+html.fs-lg .panel-content [style*="font-size: 14px"] { font-size: 17px !important; }
+
+html.fs-lg .panel-content [style*="font-size:15px"],
+html.fs-lg .panel-content [style*="font-size: 15px"] { font-size: 18px !important; }
+
+html.fs-lg .panel-content [style*="font-size:18px"],
+html.fs-lg .panel-content [style*="font-size: 18px"],
+html.fs-lg .panel-content [style*="font-size:19px"],
+html.fs-lg .panel-content [style*="font-size: 19px"] { font-size: 22px !important; }
+
+/* Tables and evidence pages */
 html.fs-lg .panel-content td,
-html.fs-lg .panel-content th,
-html.fs-lg .panel-content label,
-html.fs-lg .panel-content p,
-html.fs-lg .panel-content li,
-html.fs-lg .panel-content span.pl,
-html.fs-lg .panel-content .strat-label,
-html.fs-lg .panel-content .strat-detail,
-html.fs-lg .panel-content .machine-row,
-html.fs-lg .panel-content .si-label,
-html.fs-lg .panel-content .tc-desc,
-html.fs-lg .panel-content .tc-title,
-html.fs-lg .home-wrap .tc-desc,
-html.fs-lg .home-wrap .tc-title { font-size: 15px !important; line-height: 1.55 !important; }
+html.fs-lg .panel-content th { font-size: 14px !important; line-height: 1.55 !important; }
 
-html.fs-lg .panel-content h2 { font-size: 17px !important; }
-html.fs-lg .panel-content h1 { font-size: 19px !important; }
+/* Home cards */
+html.fs-lg .home-wrap .tc-title { font-size: 16px !important; }
+html.fs-lg .home-wrap .tc-desc  { font-size: 14px !important; }
 
-/* Extra large ~1.4x */
-html.fs-xl .panel-content div.cl,
-html.fs-xl .panel-content div.cd,
-html.fs-xl .panel-content div.csub,
-html.fs-xl .panel-content div.ct,
-html.fs-xl .panel-content div.evid,
-html.fs-xl .panel-content div.evid-note,
-html.fs-xl .panel-content div.info,
-html.fs-xl .panel-content div.ref-note,
-html.fs-xl .panel-content div.safety,
+/* ── EXTRA LARGE (1.4x) ── */
+html.fs-xl .panel-content [style*="font-size:11px"],
+html.fs-xl .panel-content [style*="font-size: 11px"] { font-size: 15px !important; }
+
+html.fs-xl .panel-content [style*="font-size:12px"],
+html.fs-xl .panel-content [style*="font-size: 12px"] { font-size: 17px !important; }
+
+html.fs-xl .panel-content [style*="font-size:13px"],
+html.fs-xl .panel-content [style*="font-size: 13px"] { font-size: 18px !important; }
+
+html.fs-xl .panel-content [style*="font-size:14px"],
+html.fs-xl .panel-content [style*="font-size: 14px"] { font-size: 20px !important; }
+
+html.fs-xl .panel-content [style*="font-size:15px"],
+html.fs-xl .panel-content [style*="font-size: 15px"] { font-size: 21px !important; }
+
+html.fs-xl .panel-content [style*="font-size:18px"],
+html.fs-xl .panel-content [style*="font-size: 18px"],
+html.fs-xl .panel-content [style*="font-size:19px"],
+html.fs-xl .panel-content [style*="font-size: 19px"] { font-size: 26px !important; }
+
 html.fs-xl .panel-content td,
-html.fs-xl .panel-content th,
-html.fs-xl .panel-content label,
-html.fs-xl .panel-content p,
-html.fs-xl .panel-content li,
-html.fs-xl .panel-content span.pl,
-html.fs-xl .panel-content .strat-label,
-html.fs-xl .panel-content .strat-detail,
-html.fs-xl .panel-content .machine-row,
-html.fs-xl .panel-content .si-label,
-html.fs-xl .panel-content .tc-desc,
-html.fs-xl .panel-content .tc-title,
-html.fs-xl .home-wrap .tc-desc,
-html.fs-xl .home-wrap .tc-title { font-size: 17px !important; line-height: 1.65 !important; }
+html.fs-xl .panel-content th { font-size: 16px !important; line-height: 1.65 !important; }
 
-html.fs-xl .panel-content h2 { font-size: 20px !important; }
-html.fs-xl .panel-content h1 { font-size: 23px !important; }
+html.fs-xl .home-wrap .tc-title { font-size: 18px !important; }
+html.fs-xl .home-wrap .tc-desc  { font-size: 16px !important; }
 
-/* Inputs scale too so text is readable */
+/* Inputs scale for readability */
 html.fs-lg .panel-content input,
 html.fs-lg .panel-content select { font-size: 17px !important; }
 html.fs-xl .panel-content input,
 html.fs-xl .panel-content select { font-size: 19px !important; }
 
-/* Exclude chrome */
+/* Never scale chrome */
 .topbar *, .tabbar *, .panel-subhdr * { font-size: inherit !important; }
 
 </style>
