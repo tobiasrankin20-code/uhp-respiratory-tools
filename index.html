@@ -255,15 +255,7 @@ input[type="number"],input[type="text"],select,textarea{font-size:16px!important
 input:focus,select:focus{scroll-margin-bottom:120px}
 
 /* ── Font size scaling ───────────────────────── */
-/* Font size scaling — uses zoom to bypass inline style specificity */
-.fs-lg  .panel-content { zoom: 1.18; }
-.fs-xl  .panel-content { zoom: 1.38; }
-.fs-lg  .home-wrap     { zoom: 1.18; }
-.fs-xl  .home-wrap     { zoom: 1.38; }
-
-/* Keep chrome fixed regardless */
-.topbar, .tabbar, .panel-subhdr, .back-home-btn,
-.panel-reset, .ev-btn, .menu-btn { font-size: 14px !important; zoom: 1 !important; }
+/* Font size scaling handled by JS */
 
 </style>
 </head>
@@ -320,39 +312,56 @@ input:focus,select:focus{scroll-margin-bottom:120px}
 <div id="menu-overlay" onclick="closeMenu(event)">
   <div class="menu-sheet">
     <div class="menu-pill"></div>
-    <div class="menu-head"><h2>&#9776; Options</h2><button class="menu-close" onclick="closeMenu()">&#10005;</button></div>
+    <div style="padding:16px 20px 20px">
 
-    <div style="padding:14px 20px">
-      <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:10px">Text Size</div>
-      <div style="display:flex;gap:8px;margin-bottom:20px">
-        <button onclick="setFS(0);closeMenu()" id="fs-btn-0" style="flex:1;padding:12px 0;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:white;cursor:pointer;font-family:inherit">
-          <div style="font-size:15px;font-weight:700">A</div>
-          <div style="font-size:11px;opacity:.6;margin-top:3px">Normal</div>
+      <!-- Text size -->
+      <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px">Text Size</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:24px">
+        <button onclick="setFS(0)" id="fs-btn-0" style="padding:14px 0;border-radius:12px;border:2px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:white;cursor:pointer;font-family:inherit;text-align:center">
+          <div style="font-size:16px;font-weight:700;line-height:1">A</div>
+          <div style="font-size:11px;opacity:.55;margin-top:5px">Normal</div>
         </button>
-        <button onclick="setFS(1);closeMenu()" id="fs-btn-1" style="flex:1;padding:12px 0;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:white;cursor:pointer;font-family:inherit">
-          <div style="font-size:19px;font-weight:700">A</div>
-          <div style="font-size:11px;opacity:.6;margin-top:3px">Large</div>
+        <button onclick="setFS(1)" id="fs-btn-1" style="padding:14px 0;border-radius:12px;border:2px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:white;cursor:pointer;font-family:inherit;text-align:center">
+          <div style="font-size:21px;font-weight:700;line-height:1">A</div>
+          <div style="font-size:11px;opacity:.55;margin-top:5px">Large</div>
         </button>
-        <button onclick="setFS(2);closeMenu()" id="fs-btn-2" style="flex:1;padding:12px 0;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:white;cursor:pointer;font-family:inherit">
-          <div style="font-size:23px;font-weight:700">A</div>
-          <div style="font-size:11px;opacity:.6;margin-top:3px">Extra large</div>
+        <button onclick="setFS(2)" id="fs-btn-2" style="padding:14px 0;border-radius:12px;border:2px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:white;cursor:pointer;font-family:inherit;text-align:center">
+          <div style="font-size:26px;font-weight:700;line-height:1">A</div>
+          <div style="font-size:11px;opacity:.55;margin-top:5px">Extra large</div>
         </button>
       </div>
 
-      <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:10px">App</div>
-      <button onclick="showIntro();closeMenu()" style="display:flex;align-items:center;gap:12px;width:100%;padding:12px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;cursor:pointer;font-family:inherit;color:white;margin-bottom:8px">
-        <span style="font-size:18px">&#8505;&#65039;</span>
-        <span style="font-size:14px;font-weight:600">About &amp; Evidence Base</span>
-      </button>
-      <button onclick="menuGoTo('evidence')" style="display:flex;align-items:center;gap:12px;width:100%;padding:12px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;cursor:pointer;font-family:inherit;color:white">
-        <span style="font-size:18px">&#128218;</span>
-        <span style="font-size:14px;font-weight:600">Evidence Library</span>
-      </button>
-    </div>
+      <!-- Links -->
+      <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px">App</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+        <button onclick="showIntro();closeMenu()" style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;cursor:pointer;font-family:inherit;color:white;text-align:left;width:100%">
+          <span style="font-size:20px;width:28px;text-align:center">&#8505;&#65039;</span>
+          <div>
+            <div style="font-size:14px;font-weight:600">About &amp; Evidence Base</div>
+            <div style="font-size:11px;opacity:.5;margin-top:2px">Guidelines, version, disclaimer</div>
+          </div>
+        </button>
+        <button onclick="menuGoTo('evidence');closeMenu()" style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;cursor:pointer;font-family:inherit;color:white;text-align:left;width:100%">
+          <span style="font-size:20px;width:28px;text-align:center">&#128218;</span>
+          <div>
+            <div style="font-size:14px;font-weight:600">Evidence Library</div>
+            <div style="font-size:11px;opacity:.5;margin-top:2px">All 13 evidence summaries</div>
+          </div>
+        </button>
+        <button onclick="closeMenu()" style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;cursor:pointer;font-family:inherit;color:white;text-align:left;width:100%">
+          <span style="font-size:20px;width:28px;text-align:center">&#10005;</span>
+          <div>
+            <div style="font-size:14px;font-weight:600">Close</div>
+          </div>
+        </button>
+      </div>
 
-    <div style="margin:4px 20px 16px;padding:10px 12px;background:rgba(184,92,0,.2);border:1px solid rgba(184,92,0,.35);border-radius:9px;font-family:'DM Sans',sans-serif;font-size:11px;color:#FDE8D8;line-height:1.5">
-      &#9888;&#65039; Working draft &mdash; not yet approved for clinical use<br>
-      <span style="opacity:.7">UHP Respiratory Tools &middot; v1.0 &middot; May 2025</span>
+      <!-- Footer -->
+      <div style="padding:12px 14px;background:rgba(184,92,0,.18);border:1px solid rgba(184,92,0,.3);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:11px;color:#FDE8D8;line-height:1.6">
+        &#9888;&#65039; <strong>Working draft</strong> &mdash; not yet approved for clinical use<br>
+        <span style="opacity:.65">UHP Respiratory Tools &middot; v1.0 &middot; May 2025</span>
+      </div>
+
     </div>
   </div>
 </div>
@@ -4555,24 +4564,44 @@ var fsIdx = 0;
 try { fsIdx = parseInt(localStorage.getItem('uhp-fs') || '0'); } catch(e){}
 
 function applyFS(){
+  // Remove old size classes from app
   var app = document.querySelector('.app');
-  if(!app) return;
-  fsSizes.forEach(function(s){ app.classList.remove(s); });
-  if(fsIdx > 0) app.classList.add(fsSizes[fsIdx]);
-  // Update topbar button
+  if(app){
+    fsSizes.forEach(function(s){ app.classList.remove(s); });
+    if(fsIdx > 0) app.classList.add(fsSizes[fsIdx]);
+  }
+  // Directly set font-size on all panel-content and home-wrap elements
+  // This beats inline styles because we're setting inline style directly
+  var scales = [1, 1.2, 1.4];
+  var scale = scales[fsIdx];
+  document.querySelectorAll('.panel-content, .home-wrap').forEach(function(container){
+    // Walk all text nodes' parent elements and scale their font sizes
+    container.querySelectorAll('*').forEach(function(el){
+      // Store original font size if not already stored
+      if(!el.dataset.origFs){
+        var computed = window.getComputedStyle(el).fontSize;
+        el.dataset.origFs = computed;
+      }
+      var orig = parseFloat(el.dataset.origFs);
+      if(orig && orig > 0){
+        el.style.fontSize = (orig * scale) + 'px';
+      }
+    });
+  });
+  // Update topbar button label
   var tb = document.getElementById('fs-toggle');
   if(tb){
     tb.textContent = ['A','A+','A++'][fsIdx];
     tb.style.background = fsIdx > 0 ? 'rgba(255,255,255,.3)' : 'rgba(255,255,255,.1)';
     tb.style.borderColor = fsIdx > 0 ? 'rgba(255,255,255,.6)' : 'rgba(255,255,255,.2)';
   }
-  // Highlight active button in menu
+  // Update menu buttons
   for(var i=0;i<3;i++){
     var b = document.getElementById('fs-btn-'+i);
     if(!b) continue;
     b.style.background = i===fsIdx ? 'rgba(255,255,255,.3)' : 'rgba(255,255,255,.08)';
     b.style.borderColor = i===fsIdx ? 'rgba(255,255,255,.6)' : 'rgba(255,255,255,.2)';
-    b.style.outline     = i===fsIdx ? '2px solid rgba(255,255,255,.4)' : 'none';
+    b.style.outline     = i===fsIdx ? '2px solid rgba(255,255,255,.3)' : 'none';
   }
   try { localStorage.setItem('uhp-fs', fsIdx); } catch(e){}
 }
