@@ -23,10 +23,10 @@ html,body{height:100%;overflow:hidden}
 body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;background:var(--mist);color:var(--ink)}
 .app{display:flex;flex-direction:column;height:100vh;height:100dvh;height:100svh}
 .topbar{background:var(--navy);padding:env(safe-area-inset-top,0) 0 0;flex-shrink:0;position:relative;z-index:20}
-.topbar-inner{display:flex;align-items:center;justify-content:space-between;padding:8px 14px 0}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;padding:6px 12px 0}
 .tb-logo{display:flex;align-items:center;gap:10px}
 
-.tb-title{color:white}.tb-title h1{font-size:14px;font-weight:700;line-height:1.2}
+.tb-title{color:white}.tb-title h1{font-size:13px;font-weight:600;line-height:1.2}
 .tb-title .tb-sub{font-size:11px;opacity:.6;margin-top:1px}
 .tb-badge{background:rgba(184,92,0,.35);border:1px solid rgba(184,92,0,.5);border-radius:20px;padding:3px 10px;font-size:10px;color:#FDE8D8;white-space:nowrap}
 .install-btn{display:none;padding:6px 12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:8px;color:white;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit}
@@ -255,39 +255,20 @@ input[type="number"],input[type="text"],select,textarea{font-size:16px!important
 input:focus,select:focus{scroll-margin-bottom:120px}
 
 /* ── Font size scaling ───────────────────────── */
-:root { --fs-scale: 1; }
-.fs-md  { --fs-scale: 1; }
-.fs-lg  { --fs-scale: 1.15; }
-.fs-xl  { --fs-scale: 1.3; }
+.fs-lg  .panel-content,
+.fs-lg  .home-wrap { font-size: 16px; }
 
-/* Apply scale to all tool content */
-.panel-content, .home-wrap {
-  font-size: calc(14px * var(--fs-scale));
-}
-.panel-content p, .panel-content div,
-.panel-content label, .panel-content span,
-.panel-content td, .panel-content th,
-.panel-content li, .panel-content button {
-  font-size: calc(1em * var(--fs-scale));
-}
-/* Keep UI chrome (tabs, topbar, subhdr) at fixed size */
-.topbar, .tabbar, .panel-subhdr { font-size: 14px; }
+.fs-xl  .panel-content,
+.fs-xl  .home-wrap { font-size: 19px; }
 
-/* Font size toggle button */
-.fs-btn {
-  display: flex; align-items: center; gap: 3px;
-  padding: 5px 10px;
-  background: rgba(255,255,255,.1);
-  border: 1px solid rgba(255,255,255,.2);
-  border-radius: 7px;
-  color: white; cursor: pointer;
-  font-family: inherit; flex-shrink: 0;
-  white-space: nowrap;
-}
-.fs-btn:hover { background: rgba(255,255,255,.2); }
-.fs-btn span { font-weight: 700; }
-.fs-btn span.fs-small { font-size: 11px; opacity: .7; }
-.fs-btn span.fs-large { font-size: 15px; }
+.fs-lg  .panel-content *,
+.fs-xl  .panel-content *,
+.fs-lg  .home-wrap *,
+.fs-xl  .home-wrap * { font-size: inherit; }
+
+/* Keep chrome fixed */
+.topbar, .tabbar, .panel-subhdr, .back-home-btn,
+.panel-reset, .ev-btn, .menu-btn { font-size: 14px !important; }
 
 </style>
 </head>
@@ -406,8 +387,8 @@ input:focus,select:focus{scroll-margin-bottom:120px}
   <div class="topbar">
     <div class="topbar-inner">
       <div class="tb-logo">
-        <div style="font-size:24px;line-height:1">🫁</div>
-        <div class="tb-title"><h1>UHP Respiratory Tools</h1></div>
+        <div style="font-size:22px;line-height:1">🫁</div>
+        <div class="tb-title"><h1>Respiratory Tools</h1></div>
       </div>
       <div style="display:flex;align-items:center;gap:8px">
         <button class="install-btn" id="install-btn" onclick="installApp()">&#43; Install</button>
@@ -4601,12 +4582,14 @@ function applyFS(){
   var app = document.querySelector('.app');
   if(!app) return;
   fsSizes.forEach(function(s){ app.classList.remove(s); });
-  app.classList.add(fsSizes[fsIdx]);
+  if(fsIdx > 0) app.classList.add(fsSizes[fsIdx]);
   // Highlight active button in menu
   for(var i=0;i<3;i++){
     var b = document.getElementById('fs-btn-'+i);
-    if(b) b.style.background = i===fsIdx ? 'rgba(255,255,255,.25)' : 'rgba(255,255,255,.08)';
-    if(b) b.style.borderColor = i===fsIdx ? 'rgba(255,255,255,.5)' : 'rgba(255,255,255,.15)';
+    if(!b) continue;
+    b.style.background = i===fsIdx ? 'rgba(255,255,255,.3)' : 'rgba(255,255,255,.08)';
+    b.style.borderColor = i===fsIdx ? 'rgba(255,255,255,.6)' : 'rgba(255,255,255,.2)';
+    b.style.outline     = i===fsIdx ? '2px solid rgba(255,255,255,.4)' : 'none';
   }
   try { localStorage.setItem('uhp-fs', fsIdx); } catch(e){}
 }
