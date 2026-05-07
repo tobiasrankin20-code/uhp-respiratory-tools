@@ -23,10 +23,10 @@ html,body{height:100%;overflow:hidden}
 body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;background:var(--mist);color:var(--ink)}
 .app{display:flex;flex-direction:column;height:100vh;height:100dvh;height:100svh}
 .topbar{background:var(--navy);padding:env(safe-area-inset-top,0) 0 0;flex-shrink:0;position:relative;z-index:20}
-.topbar-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 16px 0}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;padding:8px 14px 0}
 .tb-logo{display:flex;align-items:center;gap:10px}
 
-.tb-title{color:white}.tb-title h1{font-size:15px;font-weight:700;line-height:1.2}
+.tb-title{color:white}.tb-title h1{font-size:14px;font-weight:700;line-height:1.2}
 .tb-title .tb-sub{font-size:11px;opacity:.6;margin-top:1px}
 .tb-badge{background:rgba(184,92,0,.35);border:1px solid rgba(184,92,0,.5);border-radius:20px;padding:3px 10px;font-size:10px;color:#FDE8D8;white-space:nowrap}
 .install-btn{display:none;padding:6px 12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:8px;color:white;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit}
@@ -378,6 +378,26 @@ input:focus,select:focus{scroll-margin-bottom:120px}
     <div class="menu-section-label">App</div>
     <button class="menu-item" onclick="showIntro();closeMenu()"><div class="menu-item-icon" style="background:rgba(255,255,255,.07)">&#8505;&#65039;</div><div class="menu-item-text"><div class="menu-item-name">About &amp; Evidence Base</div><div class="menu-item-desc">Guidelines, offline use, disclaimer</div></div><div class="menu-item-arrow">&#8250;</div></button>
     <div class="menu-footer">UHP Respiratory Clinical Tools &middot; v1.0 &middot; May 2025<br>ARAU / Respiratory Virtual Ward &middot; UHP NHS Trust</div>
+    <div style="padding:14px 20px 6px;border-top:1px solid rgba(255,255,255,.07);margin-top:8px">
+      <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:10px">Text Size</div>
+      <div style="display:flex;gap:8px">
+        <button onclick="setFS(0);closeMenu()" id="fs-btn-0" style="flex:1;padding:10px 0;border-radius:9px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:white;cursor:pointer;font-family:inherit;transition:all .15s">
+          <div style="font-size:14px;font-weight:700">A</div>
+          <div style="font-size:10px;opacity:.6;margin-top:2px">Normal</div>
+        </button>
+        <button onclick="setFS(1);closeMenu()" id="fs-btn-1" style="flex:1;padding:10px 0;border-radius:9px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:white;cursor:pointer;font-family:inherit;transition:all .15s">
+          <div style="font-size:17px;font-weight:700">A</div>
+          <div style="font-size:10px;opacity:.6;margin-top:2px">Large</div>
+        </button>
+        <button onclick="setFS(2);closeMenu()" id="fs-btn-2" style="flex:1;padding:10px 0;border-radius:9px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:white;cursor:pointer;font-family:inherit;transition:all .15s">
+          <div style="font-size:21px;font-weight:700">A</div>
+          <div style="font-size:10px;opacity:.6;margin-top:2px">Extra large</div>
+        </button>
+      </div>
+    </div>
+    <div style="margin:10px 20px 4px;padding:10px 12px;background:rgba(184,92,0,.2);border:1px solid rgba(184,92,0,.35);border-radius:9px;font-family:'DM Sans',sans-serif;font-size:11px;color:#FDE8D8;line-height:1.5">
+      &#9888;&#65039; Working draft &mdash; not approved for clinical use
+    </div>
   </div>
 </div>
 
@@ -386,14 +406,12 @@ input:focus,select:focus{scroll-margin-bottom:120px}
   <div class="topbar">
     <div class="topbar-inner">
       <div class="tb-logo">
-        <div style="font-size:26px;line-height:1">🫁</div>
-        <div class="tb-title"><h1>UHP Respiratory Tools</h1><div class="tb-sub">University Hospitals Plymouth NHS Trust</div></div>
+        <div style="font-size:24px;line-height:1">🫁</div>
+        <div class="tb-title"><h1>UHP Respiratory Tools</h1></div>
       </div>
       <div style="display:flex;align-items:center;gap:8px">
-        <button class="fs-btn" onclick="cycleFS()" id="fs-toggle" title="Text size"><span class="fs-small">A</span><span class="fs-large">A</span></button>
-        <div class="tb-badge">Working draft</div>
-        <button class="menu-btn" onclick="openMenu()">&#9776;</button>
         <button class="install-btn" id="install-btn" onclick="installApp()">&#43; Install</button>
+        <button class="menu-btn" onclick="openMenu()">&#9776;</button>
       </div>
     </div>
     <div class="tabbar">
@@ -4574,31 +4592,30 @@ if(window.visualViewport){
 </script>
 <script>
 
-// ── Font size cycling
-var fsSizes = ['fs-md', 'fs-lg', 'fs-xl'];
-var fsLabels = ['A·A', 'A·A+', 'A·A++'];
+// ── Font size
+var fsSizes = ['fs-md','fs-lg','fs-xl'];
 var fsIdx = 0;
-try { fsIdx = parseInt(localStorage.getItem('uhp-fs') || '0'); } catch(e) {}
+try { fsIdx = parseInt(localStorage.getItem('uhp-fs') || '0'); } catch(e){}
 
 function applyFS(){
   var app = document.querySelector('.app');
   if(!app) return;
-  fsSizes.forEach(function(c){ app.classList.remove(c); });
+  fsSizes.forEach(function(s){ app.classList.remove(s); });
   app.classList.add(fsSizes[fsIdx]);
-  var btn = document.getElementById('fs-toggle');
-  if(btn){
-    btn.title = ['Normal text', 'Large text', 'Extra large text'][fsIdx];
-    btn.style.background = fsIdx > 0 ? 'rgba(255,255,255,.25)' : 'rgba(255,255,255,.1)';
+  // Highlight active button in menu
+  for(var i=0;i<3;i++){
+    var b = document.getElementById('fs-btn-'+i);
+    if(b) b.style.background = i===fsIdx ? 'rgba(255,255,255,.25)' : 'rgba(255,255,255,.08)';
+    if(b) b.style.borderColor = i===fsIdx ? 'rgba(255,255,255,.5)' : 'rgba(255,255,255,.15)';
   }
-  try { localStorage.setItem('uhp-fs', fsIdx); } catch(e) {}
+  try { localStorage.setItem('uhp-fs', fsIdx); } catch(e){}
 }
 
-function cycleFS(){
-  fsIdx = (fsIdx + 1) % fsSizes.length;
+function setFS(idx){
+  fsIdx = idx;
   applyFS();
 }
 
-// Apply on load
 document.addEventListener('DOMContentLoaded', applyFS);
 
 </script>
