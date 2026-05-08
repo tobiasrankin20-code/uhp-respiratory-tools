@@ -531,6 +531,7 @@ html.fs-xl .home-wrap .tc { padding: 18px !important; }
       <button class="tab" onclick="showTab('mrc')" id="tab-mrc"><span class="tab-icon">&#129695;</span><span>MRC</span></button>
       <button class="tab" onclick="showTab('spiro')" id="tab-spiro"><span class="tab-icon">🌬️</span><span>Spiro</span></button>
       <button class="tab" onclick="showTab('ecog')" id="tab-ecog"><span class="tab-icon">🚶</span><span>ECOG</span></button>
+      <button class="tab" onclick="showTab('smoke')" id="tab-smoke"><span class="tab-icon">&#128684;</span><span>NRT</span></button>
       <button class="tab" onclick="showTab('evidence')" id="tab-evidence"><span class="tab-icon">&#128218;</span><span>Evidence</span></button>
     </div>
   </div>
@@ -617,7 +618,7 @@ html.fs-xl .home-wrap .tc { padding: 18px !important; }
             <button onclick="showTab('mrc-ev')" style="margin-top:10px;padding:5px 12px;border-radius:6px;border:1px solid var(--rule);background:var(--mist);font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--slate)">&#128202; Evidence</button>
           </div>
           <div class="tc" style="border-top:4px solid #2E7D32" onclick="showTab('spiro')">
-            <div class="tc-icon">🌬️</div>
+            <div class="tc-icon">📊</div>
             <div class="tc-title">Spirometry Interpretation</div>
             <div class="tc-desc">ARTP 2020 (LLN) and BTS 2019 / GOLD 2025 (fixed 0.70) criteria side by side. GLI reference.</div>
             <span class="tc-tag" style="background:var(--lgreen);color:#2E7D32">ARTP 2020 &middot; BTS 2019 &middot; GLI</span>
@@ -628,6 +629,7 @@ html.fs-xl .home-wrap .tc { padding: 18px !important; }
                   <div class="tc" style="border-top:4px solid var(--blue)" onclick="showTab('cat')"><div class="tc-icon">&#128203;</div><div class="tc-title">CAT Score</div><div class="tc-desc">8-item COPD symptom burden score. GOLD ABE grouping, MCID tracking.</div><span class="tc-tag" style="background:var(--lblue);color:var(--blue)">Jones 2009 &middot; GOLD 2025</span><button onclick="event.stopPropagation();showTab('cat-ev')" style="margin-top:10px;padding:5px 12px;border-radius:6px;border:1px solid var(--rule);background:var(--mist);font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--slate)">&#128202; Evidence</button></div>
           <div class="tc" style="border-top:4px solid var(--navy)" onclick="showTab('abg')"><div class="tc-icon">💉</div><div class="tc-title">ABG Interpreter</div><div class="tc-desc">Systematic acid-base classification, compensation, A-a gradient, P/F ratio, AHRF flag.</div><span class="tc-tag" style="background:var(--mist);color:var(--navy)">Acid-base &middot; AHRF &middot; Oxygenation</span><button onclick="event.stopPropagation();showTab('abg-ev')" style="margin-top:10px;padding:5px 12px;border-radius:6px;border:1px solid var(--rule);background:var(--mist);font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--slate)">&#128202; Evidence</button></div>
           <div class="tc" style="border-top:4px solid var(--teal)" onclick="showTab('decaf')"><div class="tc-icon">🫁</div><div class="tc-title">DECAF Score</div><div class="tc-desc">Rapid standalone DECAF calculator. In-hospital mortality risk for AECOPD, ESD eligibility guide.</div><span class="tc-tag" style="background:var(--lteal);color:var(--teal)">Steer 2012 &middot; AUC 0.82</span><button onclick="event.stopPropagation();showTab('decaf-ev')" style="margin-top:10px;padding:5px 12px;border-radius:6px;border:1px solid var(--rule);background:var(--mist);font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--slate)">&#128202; Evidence</button></div>
+                    <div class="tc" style="border-top:4px solid #1a1a2e" onclick="showTab('smoke')"><div class="tc-icon">&#128684;</div><div class="tc-title">Smoking &amp; NRT</div><div class="tc-desc">Pack year calculator, Fagerstr&ouml;m dependence score, NRT dosing, Ottawa Model framework.</div><span class="tc-tag" style="background:var(--mist);color:#1a1a2e">NICE NG209 &middot; Ottawa &middot; Fagerstr&ouml;m</span><button onclick="event.stopPropagation();showTab('smoke-ev')" style="margin-top:10px;padding:5px 12px;border-radius:6px;border:1px solid var(--rule);background:var(--mist);font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--slate)">&#128202; Evidence</button></div>
           <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--slate);margin:20px 0 10px">Evidence Summaries</div>
         <div class="tool-grid">
           <div class="tc" style="border-top:4px solid var(--teal);opacity:.9" onclick="showTab('esd-ev')"><div class="tc-icon">&#128202;</div><div class="tc-title">ESD Evidence</div><div class="tc-desc">DECAF, PEARL, inclusion/exclusion criteria evidence base.</div><span class="tc-tag" style="background:var(--lteal);color:var(--teal)">Evidence</span></div>
@@ -639,7 +641,7 @@ html.fs-xl .home-wrap .tc { padding: 18px !important; }
           <div class="tc" style="border-top:4px solid var(--amber);opacity:.9" onclick="showTab('fa-ev')"><div class="tc-icon">&#128202;</div><div class="tc-title">MDT Evidence</div><div class="tc-desc">Frequent exacerbator phenotype, eosinophils, PR, PEARL.</div><span class="tc-tag" style="background:var(--lamber);color:var(--amber)">Evidence</span></div>
           <div class="tc" style="border-top:4px solid #5B4C8A;opacity:.9" onclick="showTab('ecog-ev')"><div class="tc-icon">&#128202;</div><div class="tc-title">ECOG Evidence</div><div class="tc-desc">Oken 1982, PS and chemotherapy, functional status and NIV.</div><span class="tc-tag" style="background:var(--lpurp);color:#5B4C8A">Evidence</span></div>
           <div class="tc" style="border-top:4px solid var(--slate);opacity:.9" onclick="showTab('mrc-ev')"><div class="tc-icon">&#128202;</div><div class="tc-title">MRC Evidence</div><div class="tc-desc">Fletcher 1959, eMRCD/DECAF, pulmonary rehab threshold.</div><span class="tc-tag" style="background:var(--mist);color:var(--slate)">Evidence</span></div>
-          <div class="tc" style="border-top:4px solid #2E7D32;opacity:.9" onclick="showTab('spiro-ev')"><div class="tc-icon">🌬️</div><div class="tc-title">Spirometry Evidence</div><div class="tc-desc">ARTP 2020, BTS 2019, GLI 2012, LLN vs fixed ratio.</div><span class="tc-tag" style="background:var(--lgreen);color:#2E7D32">Evidence</span></div>
+          <div class="tc" style="border-top:4px solid #2E7D32;opacity:.9" onclick="showTab('spiro-ev')"><div class="tc-icon">📊</div><div class="tc-title">Spirometry Evidence</div><div class="tc-desc">ARTP 2020, BTS 2019, GLI 2012, LLN vs fixed ratio.</div><span class="tc-tag" style="background:var(--lgreen);color:#2E7D32">Evidence</span></div>
         </div>
 
           <div class="tc" style="border-top:4px solid var(--blue);opacity:.9" onclick="showTab('cat-ev')"><div class="tc-icon">&#128202;</div><div class="tc-title">CAT Evidence</div><div class="tc-desc">Jones 2009, MCID, GOLD ABE threshold.</div><span class="tc-tag" style="background:var(--lblue);color:var(--blue)">Evidence</span></div>
@@ -647,7 +649,8 @@ html.fs-xl .home-wrap .tc { padding: 18px !important; }
           <div class="tc" style="border-top:4px solid var(--teal);opacity:.9" onclick="showTab('decaf-ev')"><div class="tc-icon">&#128202;</div><div class="tc-title">DECAF Evidence</div><div class="tc-desc">Steer 2012, validation, eMRCD importance, vs PEARL.</div><span class="tc-tag" style="background:var(--lteal);color:var(--teal)">Evidence</span></div>
         </div>
 
-                <div class="disclaimer"><strong>&#9888;&#65039; Working draft &mdash; not yet approved for clinical use.</strong> These tools require consultant review before implementation. They support but do not replace clinical judgement. Version 1.0 &middot; May 2025 &middot; Review date June 2026.</div>
+                  <div class="tc" style="border-top:4px solid #1a1a2e;opacity:.9" onclick="showTab('smoke-ev')"><div class="tc-icon">&#128202;</div><div class="tc-title">Smoking &amp; NRT Evidence</div><div class="tc-desc">Ottawa Model, NICE NG209, Fagerstr&ouml;m, NRT efficacy, varenicline.</div><span class="tc-tag" style="background:var(--mist);color:#1a1a2e">Evidence</span></div>
+        <div class="disclaimer"><strong>&#9888;&#65039; Working draft &mdash; not yet approved for clinical use.</strong> These tools require consultant review before implementation. They support but do not replace clinical judgement. Version 1.0 &middot; May 2025 &middot; Review date June 2026.</div>
       </div></div>
     </div>
 
@@ -2443,6 +2446,116 @@ html.fs-xl .home-wrap .tc { padding: 18px !important; }
 <div style="background:var(--mist);border-radius:8px;padding:9px 12px;margin-top:12px;font-size:10px;color:var(--slate);font-style:italic">Steer J et al. Thorax 2012;67:970 | Echevarria C et al. Thorax 2014;69:465 | Echevarria C et al. Thorax 2017;72:686</div>
 </div></div>
 </div>
+<div class="panel" id="panel-smoke">
+  <div class="panel-subhdr">
+    <button class="back-home-btn" onclick="showTab('home')">&#8592;</button>
+    <h3>&#128684; Smoking &amp; NRT</h3>
+    <button class="panel-reset" onclick="resetSmoke()">&#8634; Reset</button>
+    <button class="ev-btn" onclick="showTab('smoke-ev')">&#128218; Ev</button>
+  </div>
+  <div class="panel-content">
+
+<div style="background:var(--lblue);border-left:3px solid var(--blue);border-radius:9px;padding:12px 14px;margin-bottom:14px;font-size:13px;line-height:1.6">
+  <strong>Pack year calculator with NRT dosing guidance.</strong> Enter smoking history to calculate pack years and generate evidence-based NRT recommendations based on current consumption. Use alongside the Brief Advice and Ottawa Model framework.
+  <br><span style="font-size:11px;font-style:italic">NICE PH10 2008 &middot; NICE NG209 2021 &middot; Ottawa Model for Smoking Cessation &middot; Fagerstr&ouml;m Test for Nicotine Dependence</span>
+</div>
+
+<div style="background:white;border-radius:14px;padding:18px;box-shadow:0 2px 12px rgba(15,42,74,.08);margin-bottom:14px">
+  <div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:14px">Smoking History</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+    <div>
+      <label style="font-size:12px;color:var(--slate);display:block;margin-bottom:4px">Cigarettes per day</label>
+      <input id="sm-cpd" type="number" min="1" max="100" placeholder="e.g. 20"
+        style="width:100%;padding:9px 12px;border:2px solid var(--rule);border-radius:8px;font-size:14px;font-family:inherit" oninput="smokeCalc()">
+    </div>
+    <div>
+      <label style="font-size:12px;color:var(--slate);display:block;margin-bottom:4px">Years smoked</label>
+      <input id="sm-yrs" type="number" min="1" max="80" placeholder="e.g. 30"
+        style="width:100%;padding:9px 12px;border:2px solid var(--rule);border-radius:8px;font-size:14px;font-family:inherit" oninput="smokeCalc()">
+    </div>
+    <div>
+      <label style="font-size:12px;color:var(--slate);display:block;margin-bottom:4px">Age started smoking</label>
+      <input id="sm-age" type="number" min="5" max="80" placeholder="e.g. 16"
+        style="width:100%;padding:9px 12px;border:2px solid var(--rule);border-radius:8px;font-size:14px;font-family:inherit" oninput="smokeCalc()">
+    </div>
+    <div>
+      <label style="font-size:12px;color:var(--slate);display:block;margin-bottom:4px">Current status</label>
+      <select id="sm-status" style="width:100%;padding:9px 12px;border:2px solid var(--rule);border-radius:8px;font-size:14px;font-family:inherit;background:white" onchange="smokeCalc()">
+        <option value="">Select...</option>
+        <option value="current">Current smoker</option>
+        <option value="quit">Ex-smoker (quit)</option>
+      </select>
+    </div>
+  </div>
+  <div id="sm-quit-row" class="hidden" style="margin-bottom:12px">
+    <label style="font-size:12px;color:var(--slate);display:block;margin-bottom:4px">Years since quitting</label>
+    <input id="sm-quit-yrs" type="number" min="0" max="60" step="0.5" placeholder="e.g. 5"
+      style="width:100%;padding:9px 12px;border:2px solid var(--rule);border-radius:8px;font-size:14px;font-family:inherit" oninput="smokeCalc()">
+  </div>
+</div>
+
+<div style="background:white;border-radius:14px;padding:18px;box-shadow:0 2px 12px rgba(15,42,74,.08);margin-bottom:14px">
+  <div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px">Dependence &amp; Motivation</div>
+  <div style="font-size:12px;color:var(--slate);margin-bottom:12px">Used to guide NRT dose selection. Based on simplified Fagerstr&ouml;m criteria.</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+    <div>
+      <label style="font-size:12px;color:var(--slate);display:block;margin-bottom:4px">Time to first cigarette after waking</label>
+      <select id="sm-ttf" style="width:100%;padding:9px 12px;border:2px solid var(--rule);border-radius:8px;font-size:14px;font-family:inherit;background:white" onchange="smokeCalc()">
+        <option value="">Select...</option>
+        <option value="3">&le;5 minutes (+3)</option>
+        <option value="2">6&ndash;30 minutes (+2)</option>
+        <option value="1">31&ndash;60 minutes (+1)</option>
+        <option value="0">&gt;60 minutes (0)</option>
+      </select>
+    </div>
+    <div>
+      <label style="font-size:12px;color:var(--slate);display:block;margin-bottom:4px">Motivation to quit (1&ndash;10)</label>
+      <input id="sm-motiv" type="number" min="1" max="10" placeholder="1 = not at all, 10 = very"
+        style="width:100%;padding:9px 12px;border:2px solid var(--rule);border-radius:8px;font-size:14px;font-family:inherit" oninput="smokeCalc()">
+    </div>
+  </div>
+  <div>
+    <label style="font-size:12px;color:var(--slate);display:block;margin-bottom:4px">Do they smoke within 30 min of waking?</label>
+    <select id="sm-wake" style="width:100%;padding:9px 12px;border:2px solid var(--rule);border-radius:8px;font-size:14px;font-family:inherit;background:white" onchange="smokeCalc()">
+      <option value="">Select...</option>
+      <option value="1">Yes — smokes within 30 min of waking</option>
+      <option value="0">No</option>
+    </select>
+  </div>
+</div>
+
+<div id="smoke-outcome" class="hidden" style="margin-bottom:14px"></div>
+
+<div style="background:var(--lpurp);border-radius:8px;padding:10px 13px;font-size:12px;line-height:1.6">
+  &#128204; <strong>Brief advice:</strong> All inpatients who smoke should receive brief stop-smoking advice and be referred to the inpatient stop-smoking service or community STOP service (NICE NG209). Hospitalisation is a teachable moment.
+  <br><em style="font-size:11px">NICE NG209 2021 | NICE PH10 2008 | Ottawa Model for Smoking Cessation | Fagerstr&ouml;m TNS 1991</em>
+</div>
+
+  </div>
+</div>
+<div class="panel" id="panel-smoke-ev">
+  <div class="panel-subhdr">
+    <button class="back-home-btn" onclick="showTab('home')">&#8592;</button>
+    <h3>&#128684; Smoking &amp; NRT &mdash; Evidence</h3>
+  </div>
+<div style="max-width:860px;margin:0 auto;padding:20px 16px 80px">
+<div style="background:white;border-radius:14px;padding:24px;box-shadow:0 4px 20px rgba(15,42,74,.09)">
+<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--slate);margin-bottom:6px">Evidence Summary</div>
+<h2 style="font-size:18px;font-weight:700;color:var(--navy);margin-bottom:4px">Smoking — Pack Years &amp; NRT</h2>
+<div style="font-size:12px;color:var(--slate);margin-bottom:16px">NICE NG209 2021 &middot; Ottawa Model &middot; Fagerstr&ouml;m 1991 &middot; Version 1.0 &middot; May 2025</div>
+<table style="width:100%;border-collapse:collapse;font-size:12px">
+<tr><th style="background:#1a1a2e;color:white;padding:8px 10px;text-align:left">Component</th><th style="background:#1a1a2e;color:white;padding:8px 10px;text-align:left">Source</th><th style="background:#1a1a2e;color:white;padding:8px 10px;text-align:left">Evidence and application</th></tr>
+<tr><td style="padding:8px 10px;border-bottom:1px solid var(--rule);font-weight:600;background:var(--mist)">Pack years</td><td style="padding:8px 10px;border-bottom:1px solid var(--rule);background:var(--mist);font-style:italic;color:var(--slate)">Standard definition</td><td style="padding:8px 10px;border-bottom:1px solid var(--rule);background:var(--mist)">Pack years = (cigarettes per day &divide; 20) &times; years smoked. &ge;10 pack years: COPD screening threshold. &ge;20 pack years: significant lung cancer risk. &ge;30 pack years: used as criteria for low-dose CT lung cancer screening (NHS Targeted Lung Health Checks).</td></tr>
+<tr><td style="padding:8px 10px;border-bottom:1px solid var(--rule);font-weight:600">Ottawa Model</td><td style="padding:8px 10px;border-bottom:1px solid var(--rule);font-style:italic;color:var(--slate)">Reid RD et al. Can Fam Physician 2010</td><td style="padding:8px 10px;border-bottom:1px solid var(--rule)">Systematic Ask-Advise-Connect approach in hospital inpatients. Implementation increases quit rates 2&ndash;3 fold vs no intervention. Hospitalisation is a teachable moment: abstinence enforced, motivation often elevated. NRT should be offered to all inpatient smokers regardless of stated desire to quit.</td></tr>
+<tr><td style="padding:8px 10px;border-bottom:1px solid var(--rule);font-weight:600">NICE NG209</td><td style="padding:8px 10px;border-bottom:1px solid var(--rule);font-style:italic;color:var(--slate)">NICE NG209 2021</td><td style="padding:8px 10px;border-bottom:1px solid var(--rule)">All NHS inpatients who smoke should be identified and offered brief advice, NRT and referral to stop-smoking services. Recommends combination NRT (patch + fast-acting) as most effective pharmacotherapy for dependent smokers. Varenicline most effective single agent (RR 2.27 vs placebo).</td></tr>
+<tr><td style="padding:8px 10px;border-bottom:1px solid var(--rule);font-weight:600">Fagerstr&ouml;m Test</td><td style="padding:8px 10px;border-bottom:1px solid var(--rule);font-style:italic;color:var(--slate)">Fagerstr&ouml;m KO et al. 1991</td><td style="padding:8px 10px;border-bottom:1px solid var(--rule)">6-item dependence scale. Time to first cigarette (TTFC) is the single strongest predictor of dependence and NRT dose required. TTFC &le;30 min: high dependence, 4mg NRT products, 21mg patch. TTFC &gt;30 min: lower dependence, 2mg products, 14mg patch. This tool uses a simplified 3-item version.</td></tr>
+<tr><td style="padding:8px 10px;border-bottom:1px solid var(--rule);font-weight:600">NRT efficacy</td><td style="padding:8px 10px;border-bottom:1px solid var(--rule);font-style:italic;color:var(--slate)">Cochrane Review &mdash; Hartmann-Boyce et al. 2018</td><td style="padding:8px 10px;border-bottom:1px solid var(--rule)">All NRT forms increase quit rates vs placebo (RR ~1.55). Combination NRT (patch + fast-acting) superior to monotherapy (RR 1.25). No significant difference between NRT types when dose-matched. Patch alone sufficient for light smokers; combination needed for &ge;20/day.</td></tr>
+<tr><td style="padding:8px 10px;font-weight:600">Varenicline vs NRT</td><td style="padding:8px 10px;font-style:italic;color:var(--slate)">Cahill et al. Cochrane 2016</td><td style="padding:8px 10px">Varenicline superior to single NRT (RR 1.57) and bupropion (RR 1.59). Combination NRT approaches varenicline efficacy. Varenicline not suitable for all inpatients &mdash; refer to STOP service for initiation on discharge. Monitor neuropsychiatric symptoms.</td></tr>
+</table>
+<div style="background:var(--lamber);border-radius:8px;padding:10px 12px;margin-top:14px;font-size:11px;color:var(--amber);font-weight:600">&#9888;&#65039; Working draft &mdash; requires consultant approval before clinical use. Review date: June 2026.</div>
+<div style="background:var(--mist);border-radius:8px;padding:9px 12px;margin-top:10px;font-size:10px;color:var(--slate);font-style:italic">NICE NG209 2021 | Reid RD et al. Can Fam Physician 2010;56:e418 | Fagerstr&ouml;m KO et al. Br J Addict 1991;86:1177 | Hartmann-Boyce J et al. Cochrane 2018 | Cahill K et al. Cochrane 2016 | NICE PH10 2008</div>
+</div></div>
+</div>
 <div class="panel" id="panel-asthma-ev">
   <div class="panel-subhdr">
     <button class="back-home-btn" onclick="showTab('home')">&#8592;</button>
@@ -2601,7 +2714,7 @@ html.fs-xl .home-wrap .tc { padding: 18px !important; }
 <div class="panel" id="panel-spiro-ev">
   <div class="panel-subhdr">
     <button class="back-home-btn" onclick="showTab('home')">&#8592;</button>
-    <h3>🌬️ Spirometry — Evidence</h3>
+    <h3>📊 Spirometry — Evidence</h3>
   </div>
 <div style="max-width:860px;margin:0 auto;padding:20px 16px 80px">
 <div style="background:white;border-radius:14px;padding:24px;box-shadow:0 4px 20px rgba(15,42,74,.09)">
@@ -2696,7 +2809,8 @@ html.fs-xl .home-wrap .tc { padding: 18px !important; }
         <div style="font-size:11px;color:var(--slate)">Oken 1982 &middot; PS &amp; treatment decisions</div>
       </div>
     </div>
-    <div style="margin-top:14px;background:var(--lamber);border:1px solid var(--amber);border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.6">
+      <div onclick="showTab('smoke-ev')" style="background:white;border-radius:12px;padding:14px;cursor:pointer;box-shadow:0 2px 8px rgba(15,42,74,.08);border-top:3px solid #1a1a2e;transition:all .15s"><div style="font-size:18px;margin-bottom:6px">&#128684;</div><div style="font-size:13px;font-weight:700;margin-bottom:3px">Smoking &amp; NRT</div><div style="font-size:11px;color:var(--slate)">Ottawa &middot; NICE NG209 &middot; Fagerstr&ouml;m</div></div>
+          <div style="margin-top:14px;background:var(--lamber);border:1px solid var(--amber);border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.6">
       <strong>&#9888;&#65039; Working draft &mdash; not yet approved for clinical use.</strong> All evidence summaries are version 1.0, May 2025. Review date June 2026. For full guidelines refer to primary sources listed in each summary.
     </div>
   </div>
@@ -4731,6 +4845,235 @@ function cycleFS(){
 }
 
 document.addEventListener('DOMContentLoaded', applyFS);
+
+</script>
+<script>
+
+(function(){
+
+window.smokeCalc = function(){
+  var cpd    = parseFloat(document.getElementById('sm-cpd').value);
+  var yrs    = parseFloat(document.getElementById('sm-yrs').value);
+  var age    = parseFloat(document.getElementById('sm-age').value);
+  var status = document.getElementById('sm-status').value;
+  var ttf    = parseFloat(document.getElementById('sm-ttf').value);
+  var motiv  = parseFloat(document.getElementById('sm-motiv').value);
+  var wake   = parseFloat(document.getElementById('sm-wake').value);
+  var out    = document.getElementById('smoke-outcome');
+
+  // Show/hide quit years row
+  var quitRow = document.getElementById('sm-quit-row');
+  if(status === 'quit') { quitRow.classList.remove('hidden'); }
+  else { quitRow.classList.add('hidden'); }
+
+  if(isNaN(cpd) || isNaN(yrs)) { out.classList.add('hidden'); return; }
+
+  // ── Pack years
+  var packYears = (cpd / 20) * yrs;
+
+  // ── Pack year risk context
+  var pyRisk, pyCol, pyBg;
+  if(packYears < 10){
+    pyRisk = 'Low cumulative exposure'; pyCol='var(--green)'; pyBg='var(--lgreen)';
+  } else if(packYears < 20){
+    pyRisk = 'Moderate exposure — COPD risk increasing'; pyCol='var(--amber)'; pyBg='var(--lamber)';
+  } else if(packYears < 40){
+    pyRisk = 'Significant exposure — COPD likely if symptomatic'; pyCol='var(--amber)'; pyBg='var(--lamber)';
+  } else {
+    pyRisk = 'Heavy cumulative exposure — high COPD/lung cancer risk'; pyCol='var(--rose)'; pyBg='var(--lrose)';
+  }
+
+  // ── Simplified Fagerström score
+  var ftnd = 0;
+  if(!isNaN(ttf)) ftnd += ttf;
+  if(!isNaN(wake) && wake === 1) ftnd += 1;
+  if(cpd >= 31) ftnd += 2;
+  else if(cpd >= 21) ftnd += 1;
+
+  var depLabel, depCol, depBg;
+  if(ftnd <= 2){ depLabel='Low dependence'; depCol='var(--green)'; depBg='var(--lgreen)'; }
+  else if(ftnd <= 4){ depLabel='Moderate dependence'; depCol='var(--amber)'; depBg='var(--lamber)'; }
+  else { depLabel='High dependence'; depCol='var(--rose)'; depBg='var(--lrose)'; }
+
+  // ── NRT dosing based on CPD and dependence
+  var nrtRecs = [];
+
+  // Patch (primary recommendation for most inpatients — no fire risk)
+  var patchDose;
+  if(cpd >= 20 || ftnd >= 5){
+    patchDose = '21mg/24h patch (Step 1) — high dose';
+  } else if(cpd >= 10){
+    patchDose = '14mg/24h patch (Step 2) — standard dose';
+  } else {
+    patchDose = '7mg/24h patch (Step 3) — low dose';
+  }
+  nrtRecs.push({
+    name: 'Nicotine Patch',
+    icon: '&#129657;',
+    dose: patchDose,
+    notes: 'Apply to non-hairy skin, rotate sites daily. 16h patch if sleep disturbance. Safe for inpatient use &mdash; no fire risk. Continue for 8&ndash;12 weeks with step-down.',
+    suitable: true,
+    inpatient: true
+  });
+
+  // Gum
+  var gumDose = cpd >= 20 || ftnd >= 5 ? '4mg gum' : '2mg gum';
+  nrtRecs.push({
+    name: 'Nicotine Gum',
+    icon: '&#129693;',
+    dose: gumDose + ' — 1 piece per 1&ndash;2 hours as needed (max 24/day)',
+    notes: '"Chew and park" technique: chew until taste appears, park between cheek and gum. Avoid food/drink 15 min before. Can combine with patch for breakthrough cravings.',
+    suitable: true,
+    inpatient: true
+  });
+
+  // Lozenge
+  var lozDose = cpd >= 20 || ftnd >= 5 ? '4mg lozenge' : '2mg lozenge';
+  nrtRecs.push({
+    name: 'Nicotine Lozenge / Mini-lozenge',
+    icon: '&#128138;',
+    dose: lozDose + ' — 1 every 1&ndash;2 hours (max 15/day)',
+    notes: 'Allow to dissolve slowly. Useful if jaw problems preclude gum. Mini-lozenges more discreet. Can combine with patch.',
+    suitable: true,
+    inpatient: true
+  });
+
+  // Inhalator
+  nrtRecs.push({
+    name: 'Nicotine Inhalator',
+    icon: '&#128168;',
+    dose: '10mg cartridge — use when urge occurs (up to 12 cartridges/day)',
+    notes: 'Addresses hand-to-mouth habit. Less suitable acutely unwell patients. Each cartridge lasts ~20 min of intensive use. Use at room temperature.',
+    suitable: cpd < 30,
+    inpatient: true
+  });
+
+  // Varenicline — note for community follow-up
+  nrtRecs.push({
+    name: 'Varenicline (Champix)',
+    icon: '&#128138;',
+    dose: 'Start 0.5mg OD days 1&ndash;3, 0.5mg BD days 4&ndash;7, then 1mg BD for 12 weeks',
+    notes: 'Most effective pharmacotherapy (OR 2.27 vs placebo). Not typically started inpatient. Refer to STOP service for community initiation. Caution: psychiatric history, renal impairment. Monitor mood.',
+    suitable: true,
+    inpatient: false
+  });
+
+  // Bupropion
+  nrtRecs.push({
+    name: 'Bupropion (Zyban)',
+    icon: '&#128138;',
+    dose: '150mg OD for 6 days then 150mg BD for 7&ndash;9 weeks',
+    notes: 'Second-line. Contraindicated: seizure history, eating disorders, MAOIs, CNS tumour, bipolar. Refer to STOP service. Multiple drug interactions &mdash; check BNF.',
+    suitable: true,
+    inpatient: false
+  });
+
+  // ── Motivation framing
+  var motivBlock = '';
+  if(!isNaN(motiv)){
+    var motivLabel, motivMsg;
+    if(motiv <= 3){
+      motivLabel='Low motivation ('+motiv+'/10)';
+      motivMsg="This admission may be a teachable moment. Explore ambivalence using motivational interviewing. Offer brief advice and leaflets. Note: even patients who say they don't want to quit benefit from brief advice. Document discussion.";
+    } else if(motiv <= 6){
+      motivLabel='Moderate motivation ('+motiv+'/10)';
+      motivMsg='Patient has some motivation. Explore barriers to quitting. Offer NRT to address cravings during admission regardless of intent to quit long-term. Refer to STOP service for structured support.';
+    } else {
+      motivLabel='High motivation ('+motiv+'/10)';
+      motivMsg='Patient is motivated to quit. Initiate NRT immediately. Set a quit date. Refer to inpatient STOP service or community STOP on discharge. Combination NRT (patch + fast-acting) most effective.';
+    }
+    motivBlock = '<div style="background:var(--lgreen);border:2px solid var(--green);border-radius:10px;padding:13px 15px;margin-bottom:12px">'
+      +'<div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:6px">&#127919; '+motivLabel+'</div>'
+      +'<div style="font-size:13px;line-height:1.6">'+motivMsg+'</div>'
+      +'</div>';
+  }
+
+  // ── Ottawa Model prompt
+  var ottawaBlock = '<div style="background:var(--lpurp);border:1px solid #5B4C8A;border-radius:10px;padding:13px 15px;margin-bottom:12px">'
+    +'<div style="font-size:13px;font-weight:700;color:#5B4C8A;margin-bottom:8px">&#128203; Ottawa Model — Inpatient Ask-Advise-Connect</div>'
+    +'<div style="display:flex;flex-direction:column;gap:6px;font-size:13px">'
+    +'<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:20px;height:20px;border-radius:50%;background:#5B4C8A;color:white;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">1</span><div><strong>Ask:</strong> Record smoking status. Document pack years.</div></div>'
+    +'<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:20px;height:20px;border-radius:50%;background:#5B4C8A;color:white;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">2</span><div><strong>Advise:</strong> Brief, clear, non-judgmental advice to stop.</div></div>'
+    +'<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:20px;height:20px;border-radius:50%;background:#5B4C8A;color:white;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">3</span><div><strong>Connect:</strong> Refer to inpatient or community STOP service. Prescribe NRT regardless of intent to quit.</div></div>'
+    +'</div>'
+    +'<div style="margin-top:8px;font-size:11px;color:var(--slate);font-style:italic">Ottawa Model for Smoking Cessation &middot; Reid RD et al. Can Fam Physician 2010</div>'
+    +'</div>';
+
+  // ── NRT cards
+  var nrtHTML = '<div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:10px">&#128138; NRT Options</div>'
+    +'<div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px">';
+
+  nrtRecs.forEach(function(r){
+    var borderCol = r.inpatient ? 'var(--teal)' : 'var(--rule)';
+    var bgCol     = r.inpatient ? 'var(--lteal)' : 'var(--mist)';
+    var badge     = r.inpatient
+      ? '<span style="font-size:10px;font-weight:700;background:var(--teal);color:white;padding:2px 7px;border-radius:10px;margin-left:8px">Inpatient safe</span>'
+      : '<span style="font-size:10px;font-weight:700;background:var(--mist);color:var(--slate);padding:2px 7px;border-radius:10px;margin-left:8px">Community / discharge</span>';
+    nrtHTML += '<div style="border:2px solid '+borderCol+';border-radius:10px;overflow:hidden">'
+      +'<div style="background:'+bgCol+';padding:9px 13px;display:flex;align-items:center">'
+      +'<span style="font-size:16px;margin-right:8px">'+r.icon+'</span>'
+      +'<span style="font-size:13px;font-weight:700;flex:1">'+r.name+'</span>'
+      +badge
+      +'</div>'
+      +'<div style="padding:10px 13px;background:white;font-size:12px;line-height:1.6">'
+      +'<div style="margin-bottom:5px"><strong>Dose:</strong> '+r.dose+'</div>'
+      +'<div style="color:var(--slate)">'+r.notes+'</div>'
+      +'</div></div>';
+  });
+  nrtHTML += '</div>';
+
+  // ── Pack year summary block
+  var pyBlock = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">'
+    +'<div style="background:'+pyBg+';border:2px solid '+pyCol+';border-radius:12px;padding:16px;text-align:center">'
+    +'<div style="font-size:32px;font-weight:800;color:'+pyCol+'">'+packYears.toFixed(1)+'</div>'
+    +'<div style="font-size:12px;font-weight:600;color:'+pyCol+'">Pack years</div>'
+    +'<div style="font-size:11px;color:var(--slate);margin-top:4px">'+pyRisk+'</div>'
+    +'</div>'
+    +'<div style="background:'+depBg+';border:2px solid '+depCol+';border-radius:12px;padding:16px;text-align:center">'
+    +'<div style="font-size:28px;font-weight:800;color:'+depCol+'">'+(isNaN(ttf)?'?':ftnd)+'</div>'
+    +'<div style="font-size:12px;font-weight:600;color:'+depCol+'">Dependence score</div>'
+    +'<div style="font-size:11px;color:var(--slate);margin-top:4px">'+depLabel+(isNaN(ttf)?' (TTF not entered)':'')+'</div>'
+    +'</div></div>';
+
+  // CPD context
+  var cpdContext = '';
+  if(cpd >= 20){
+    cpdContext = 'Heavy smoker (≥20/day) — high nicotine dependence likely. Start high-dose NRT immediately. Combination therapy (patch + fast-acting) recommended.';
+  } else if(cpd >= 10){
+    cpdContext = 'Moderate smoker (10–19/day). Standard NRT dosing. Combination therapy beneficial.';
+  } else {
+    cpdContext = 'Light smoker (<10/day). Low-dose NRT. May benefit more from behavioural support than pharmacotherapy alone.';
+  }
+
+  out.innerHTML = '<div style="background:white;border-radius:14px;padding:20px;box-shadow:0 4px 20px rgba(15,42,74,.09)">'
+    +'<div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:14px">Smoking Assessment</div>'
+    +pyBlock
+    +'<div style="background:var(--mist);border-radius:9px;padding:10px 13px;font-size:13px;line-height:1.6;margin-bottom:12px">'+cpdContext+'</div>'
+    +motivBlock
+    +ottawaBlock
+    +nrtHTML
+    +'<div style="font-size:11px;color:var(--slate);font-style:italic;padding-top:10px;border-top:1px solid var(--rule)">'
+    +'Pack years = (cigarettes per day ÷ 20) × years smoked. Dependence score derived from simplified Fagerström TNS. NRT dosing per NICE NG209 and BNF. Always check for contraindications before prescribing.'
+    +'</div>'
+    +'</div>';
+
+  out.classList.remove('hidden');
+  setTimeout(function(){ panelScroll(out,'panel-smoke'); }, 120);
+};
+
+window.resetSmoke = function(){
+  ['sm-cpd','sm-yrs','sm-age','sm-motiv','sm-quit-yrs'].forEach(function(id){
+    var el=document.getElementById(id); if(el) el.value='';
+  });
+  ['sm-status','sm-ttf','sm-wake'].forEach(function(id){
+    var el=document.getElementById(id); if(el) el.value='';
+  });
+  document.getElementById('sm-quit-row').classList.add('hidden');
+  var out=document.getElementById('smoke-outcome');
+  out.classList.add('hidden'); out.innerHTML='';
+  panelTop('panel-smoke');
+};
+})();
 
 </script>
 </body>
